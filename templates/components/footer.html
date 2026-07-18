@@ -1,0 +1,50 @@
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand-text">{{ config['SITE_NAME'] }}</div>
+                <p class="footer-desc">
+                    آژانس دیجیتال مارکتینگ داده‌محور.
+                    از سال ۱۳۹۸ به بیش از ۱۲۰ کسب‌وکار ایرانی کمک کرده‌ایم
+                    تا با روش‌های قابل اندازه‌گیری رشد کنند.
+                </p>
+                <div class="footer-socials">
+                    <a href="#" class="footer-social" aria-label="اینستاگرام">
+                        <span class="iconify" data-icon="mdi:instagram" data-width="18"></span>
+                    </a>
+                    <a href="#" class="footer-social" aria-label="لینکدین">
+                        <span class="iconify" data-icon="mdi:linkedin" data-width="18"></span>
+                    </a>
+                    <a href="#" class="footer-social" aria-label="تلگرام">
+                        <span class="iconify" data-icon="mdi:send" data-width="18"></span>
+                    </a>
+                    <a href="#" class="footer-social" aria-label="توییتر">
+                        <span class="iconify" data-icon="mdi:twitter" data-width="18"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>خدمات</h4>
+                {% for item in footer_services %}
+                <a href="#">{{ item }}</a>
+                {% endfor %}
+            </div>
+            <div class="footer-col">
+                <h4>شرکت</h4>
+                {% for item in footer_company %}
+                <a href="#">{{ item }}</a>
+                {% endfor %}
+            </div>
+            <div class="footer-col">
+                <h4>منابع</h4>
+                {% for item in footer_resources %}
+                <a href="#">{{ item }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© ۱۴۰۳ {{ config['SITE_NAME'] }}. تمامی حقوق محفوظ است.</span>
+            <span>تهران، خیابان ولیعصر، پلاک ۲۴۸</span>
+        </div>
+    </div>
+</footer>

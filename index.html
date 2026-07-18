@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رشدینه | آژانس دیجیتال مارکتینگ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --cream: #F8F6F1;
+            --cream-dark: #EFECE5;
+            --white: #FFFFFF;
+            --green-deep: #1B4332;
+            --green-mid: #2D6A4F;
+            --green-light: #40916C;
+            --green-pale: #D8F3DC;
+            --gold: #C8963E;
+            --gold-light: #F0DDB8;
+            --gold-pale: #FBF5E8;
+            --text-primary: #1A1A1A;
+            --text-secondary: #4A4A4A;
+            --text-muted: #8A8A8A;
+            --border: #E5E2DB;
+            --border-light: #F0EDE6;
+            --shadow-sm: 0 1px 3px rgba(27,67,50,0.04);
+            --shadow-md: 0 4px 20px rgba(27,67,50,0.06);
+            --shadow-lg: 0 12px 40px rgba(27,67,50,0.08);
+            --shadow-xl: 0 24px 60px rgba(27,67,50,0.1);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Vazirmatn', system-ui, sans-serif;
+            background: var(--cream);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* === GRAIN OVERLAY === */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px;
+        }
+
+        /* === SCROLL REVEAL === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .counter { transition: none !important; }
+        }
+
+        /* === NAVIGATION === */
+        .nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 0 48px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+        }
+        .nav.scrolled {
+            background: rgba(248, 246, 241, 0.85);
+            backdrop-filter: blur(20px) saturate(1.5);
+            -webkit-backdrop-filter: blur(20px) saturate(1.5);
+            border-bottom: 1px solid var(--border-light);
+            height: 68px;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--green-deep);
+        }
+        .nav-logo {
+            width: 42px;
+            height: 42px;
+            background: var(--green-deep);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 800;
+            transition: transform 0.3s ease;
+        }
+        .nav-brand:hover .nav-logo { transform: rotate(-8deg) scale(1.05); }
+        .nav-brand-text { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+        .nav-links { display: flex; align-items: center; gap: 8px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 10px;
+            transition: all 0.25s ease;
+        }
+        .nav-links a:hover { color: var(--green-deep); background: var(--green-pale); }
+        .nav-cta {
+            background: var(--green-deep) !important;
+            color: white !important;
+            font-weight: 600 !important;
+            padding: 10px 24px !important;
+            border-radius: 12px !important;
+        }
+        .nav-cta:hover {
+            background: var(--green-mid) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(27,67,50,0.2);
+        }
+        .nav-mobile-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--green-deep);
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* === HERO === */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 48px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--green-pale) 0%, transparent 70%);
+            opacity: 0.5;
+            animation: float 8s ease-in-out infinite;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--gold-light) 0%, transparent 70%);
+            opacity: 0.4;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+        .hero-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 6px 16px 6px 8px;
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green-light);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+        .hero h1 {
+            font-size: clamp(38px, 5vw, 64px);
+            font-weight: 900;
+            line-height: 1.3;
+            color: var(--green-deep);
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+        .hero h1 span { color: var(--gold); }
+        .hero-desc {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 2;
+            margin-bottom: 40px;
+            max-width: 520px;
+            font-weight: 300;
+        }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--green-deep);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(27,67,50,0.15);
+        }
+        .btn-primary:hover {
+            background: var(--green-mid);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(27,67,50,0.25);
+        }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--white);
+            color: var(--text-primary);
+            padding: 16px 32px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            border-color: var(--green-light);
+            color: var(--green-deep);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        .hero-visual {
+            position: relative;
+        }
+        .hero-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-light);
+            position: relative;
+        }
+        .hero-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+        .hero-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--green-deep);
+        }
+        .hero-card-badge {
+            background: var(--green-pale);
+            color: var(--green-deep);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 100px;
+        }
+        .mini-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            height: 120px;
+            margin-bottom: 20px;
+        }
+        .mini-bar {
+            flex: 1;
+            border-radius: 6px 6px 0 0;
+            background: var(--green-pale);
+            transition: height 1s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        .mini-bar.active { background: linear-gradient(to top, var(--green-deep), var(--green-light)); }
+        .mini-bar-label {
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+        .hero-stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border-light);
+            margin-top: 28px;
+        }
+        .hero-stat-item { text-align: center; }
+        .hero-stat-value {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--green-deep);
+        }
+        .hero-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .hero-float-card {
+            position: absolute;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 14px 18px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: float-card 4s ease-in-out infinite;
+        }
+        .hero-float-card.card-1 { top: -20px; left: -30px; animation-delay: 0s; }
+        .hero-float-card.card-2 { bottom: 40px; right: -40px; animation-delay: 1.5s; }
+        @keyframes float-card {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .float-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .float-icon.green { background: var(--green-pale); color: var(--green-deep); }
+        .float-icon.gold { background: var(--gold-pale); color: var(--gold); }
+        .float-text-sm { font-size: 11px; color: var(--text-muted); }
+        .float-text-value { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+
+        /* === TRUST BAR === */
+        .trust {
+            padding: 48px;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            background: var(--white);
+        }
+        .trust-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        .trust-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .trust-logos {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .trust-logo {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--border);
+            transition: color 0.3s ease;
+            cursor: default;
+            letter-spacing: -0.5px;
+        }
+        .trust-logo:hover { color: var(--text-muted); }
+
+        /* === SECTION COMMON === */
+        .section {
+            padding: 100px 48px;
+        }
+        .section-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--green-mid);
+            background: var(--green-pale);
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: clamp(28px, 3.5vw, 44px);
+            font-weight: 800;
+            color: var(--green-deep);
+            line-height: 1.4;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        .section-desc {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 2;
+            font-weight: 300;
+        }
+
+        /* === SERVICES === */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to left, var(--green-deep), var(--green-light));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--green-pale);
+        }
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+        .service-icon.s1 { background: var(--green-pale); color: var(--green-deep); }
+        .service-icon.s2 { background: var(--gold-pale); color: var(--gold); }
+        .service-icon.s3 { background: #EDE9FE; color: #7C3AED; }
+        .service-icon.s4 { background: #FEE2E2; color: #DC2626; }
+        .service-icon.s5 { background: #DBEAFE; color: #2563EB; }
+        .service-icon.s6 { background: #FEF3C7; color: #D97706; }
+        .service-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        .service-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 2;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--green-mid);
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+        .service-link:hover { gap: 12px; }
+
+        /* === STATS DASHBOARD === */
+        .stats-section {
+            background: var(--green-deep);
+            position: relative;
+            overflow: hidden;
+        }
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(64,145,108,0.3) 0%, transparent 70%);
+        }
+        .stats-section .section-tag {
+            background: rgba(255,255,255,0.1);
+            color: var(--green-pale);
+        }
+        .stats-section .section-title { color: white; }
+        .stats-section .section-desc { color: rgba(255,255,255,0.6); }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-4px);
+        }
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            line-height: 1;
+            margin-bottom: 4px;
+            direction: ltr;
+        }
+        .stat-number .stat-suffix {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--gold);
+        }
+        .stat-unit {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--green-pale);
+            margin-bottom: 8px;
+        }
+        .stat-desc {
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* === CASE STUDIES === */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            grid-template-rows: auto auto;
+            gap: 24px;
+        }
+        .case-card {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .case-card.featured { grid-row: span 2; }
+        .case-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        .case-card.featured .case-img { height: 320px; }
+        .case-body { padding: 28px; }
+        .case-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .case-tag {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: var(--cream);
+            color: var(--text-secondary);
+        }
+        .case-body h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        .case-body p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 2;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        .case-metrics {
+            display: flex;
+            gap: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-light);
+        }
+        .case-metric-value {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--green-deep);
+            direction: ltr;
+        }
+        .case-metric-label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* === PROCESS === */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+        }
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            top: 44px;
+            right: 60px;
+            left: 60px;
+            height: 2px;
+            background: linear-gradient(to left, var(--green-pale), var(--border), var(--green-pale));
+            z-index: 0;
+        }
+        .process-step {
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .process-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--green-deep);
+            color: white;
+            font-size: 18px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            direction: ltr;
+            box-shadow: 0 4px 16px rgba(27,67,50,0.2);
+        }
+        .process-step h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        .process-step p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 2;
+            font-weight: 300;
+        }
+
+        /* === TESTIMONIALS === */
+        .testimonials-section { background: var(--white); }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .testimonial-card {
+            background: var(--cream);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .testimonial-quote {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 2.2;
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        .testimonial-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .testimonial-role {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .testimonial-stars {
+            position: absolute;
+            top: 28px;
+            left: 28px;
+            color: var(--gold);
+            font-size: 14px;
+            display: flex;
+            gap: 2px;
+        }
+
+        /* === CTA === */
+        .cta-section {
+            padding: 100px 48px;
+        }
+        .cta-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--green-deep) 0%, #0D2818 100%);
+            border-radius: var(--radius-xl);
+            padding: 80px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-inner::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(200,150,62,0.15) 0%, transparent 70%);
+        }
+        .cta-inner h2 {
+            font-size: clamp(28px, 3.5vw, 42px);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .cta-inner p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 2;
+            font-weight: 300;
+            position: relative;
+        }
+        .cta-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            position: relative;
+        }
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gold);
+            color: var(--green-deep);
+            padding: 16px 36px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(200,150,62,0.3);
+        }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(200,150,62,0.4);
+            background: #D4A54E;
+        }
+        .btn-outline-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: white;
+            padding: 16px 36px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-white:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        /* === FOOTER === */
+        .footer {
+            background: var(--green-deep);
+            color: rgba(255,255,255,0.5);
+            padding: 64px 48px 32px;
+        }
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+        .footer-brand-text {
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .footer-desc {
+            font-size: 13px;
+            line-height: 2;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+        }
+        .footer-social {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        .footer-social:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-color: rgba(255,255,255,0.2);
+        }
+        .footer-col h4 {
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .footer-col a {
+            display: block;
+            color: rgba(255,255,255,0.45);
+            text-decoration: none;
+            font-size: 13px;
+            padding: 6px 0;
+            transition: color 0.2s ease;
+            font-weight: 300;
+        }
+        .footer-col a:hover { color: white; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        /* === TOAST === */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: var(--green-deep);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 10000;
+            box-shadow: var(--shadow-xl);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        /* === MOBILE NAV === */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: rgba(248,246,241,0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .mobile-menu.open { opacity: 1; pointer-events: all; }
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--green-deep);
+            font-size: 24px;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 12px;
+            transition: background 0.2s ease;
+        }
+        .mobile-menu a:hover { background: var(--green-pale); }
+        .mobile-close {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--green-deep);
+            cursor: pointer;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+            .hero-visual { max-width: 500px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .cases-grid { grid-template-columns: 1fr; }
+            .case-card.featured { grid-row: span 1; }
+            .testimonials-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .process-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+            .process-grid::before { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .nav { padding: 0 24px; }
+            .nav-links { display: none; }
+            .nav-mobile-btn { display: block; }
+            .hero { padding: 100px 24px 60px; min-height: auto; }
+            .hero h1 { font-size: 32px; }
+            .hero-float-card { display: none; }
+            .section { padding: 64px 24px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .stat-number { font-size: 36px; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .cta-inner { padding: 48px 24px; }
+            .cta-actions { flex-direction: column; align-items: center; }
+            .footer { padding: 48px 24px 24px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+            .trust { padding: 32px 24px; }
+            .trust-logos { gap: 24px; }
+            .process-grid { grid-template-columns: 1fr; gap: 32px; }
+            .hero-stats-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .hero-card { padding: 24px; }
+        }
+
+        @container (max-width: 640px) {
+            .stat-number { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="nav" id="navbar">
+        <a href="#" class="nav-brand">
+            <div class="nav-logo">ر</div>
+            <span class="nav-brand-text">رشدینه</span>
+        </a>
+        <div class="nav-links">
+            <a href="#services">خدمات</a>
+            <a href="#stats">نمونه کارها</a>
+            <a href="#process">فرآیند</a>
+            <a href="#testimonials">نظرات</a>
+            <a href="#cta" class="nav-cta">مشاوره رایگان</a>
+        </div>
+        <button class="nav-mobile-btn" onclick="toggleMobile()" aria-label="منو">
+            <span class="iconify" data-icon="mdi:menu" data-width="28"></span>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" onclick="toggleMobile()">
+            <span class="iconify" data-icon="mdi:close" data-width="28"></span>
+        </button>
+        <a href="#services" onclick="toggleMobile()">خدمات</a>
+        <a href="#stats" onclick="toggleMobile()">نمونه کارها</a>
+        <a href="#process" onclick="toggleMobile()">فرآیند</a>
+        <a href="#testimonials" onclick="toggleMobile()">نظرات</a>
+        <a href="#cta" onclick="toggleMobile()">مشاوره رایگان</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="hero-badge reveal">
+                    <div class="hero-badge-dot"></div>
+                    بیش از ۱۲۰ پروژه موفق در سال ۱۴۰۳
+                </div>
+                <h1 class="reveal reveal-delay-1">
+                    رشد پایدار کسب‌وکار<br>
+                    با <span>داده‌محوری</span>
+                </h1>
+                <p class="hero-desc reveal reveal-delay-2">
+                    ما با ترکیب تحلیل داده، استراتژی محتوا و بهینه‌سازی تبدیل،
+                    نرخ بازگشت سرمایه شما را به‌صورت قابل اندازه‌گیری افزایش می‌دهیم.
+                </p>
+                <div class="hero-actions reveal reveal-delay-3">
+                    <a href="#cta" class="btn-primary">
+                        شروع همکاری
+                        <span class="iconify" data-icon="mdi:arrow-left" data-width="18"></span>
+                    </a>
+                    <a href="#cases" class="btn-secondary">
+                        <span class="iconify" data-icon="mdi:play-circle-outline" data-width="20"></span>
+                        مشاهده نمونه کارها
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual reveal reveal-delay-2">
+                <div class="hero-float-card card-1">
+                    <div class="float-icon green">
+                        <span class="iconify" data-icon="mdi:trending-up" data-width="20"></span>
+                    </div>
+                    <div>
+                        <div class="float-text-sm">نرخ تبدیل</div>
+                        <div class="float-text-value">+۳۴٪</div>
+                    </div>
+                </div>
+                <div class="hero-float-card card-2">
+                    <div class="float-icon gold">
+                        <span class="iconify" data-icon="mdi:currency-usd" data-width="20"></span>
+                    </div>
+                    <div>
+                        <div class="float-text-sm">درآمد ماهانه</div>
+                        <div class="float-text-value">۱.۲ میلیارد</div>
+                    </div>
+                </div>
+                <div class="hero-card">
+                    <div class="hero-card-header">
+                        <span class="hero-card-title">داشبورد عملکرد</span>
+                        <span class="hero-card-badge">زنده</span>
+                    </div>
+                    <div class="mini-chart" id="miniChart"></div>
+                    <div class="hero-stats-row">
+                        <div class="hero-stat-item">
+                            <div class="hero-stat-value counter" data-target="24850">۰</div>
+                            <div class="hero-stat-label">بازدید ارگانیک</div>
+                        </div>
+                        <div class="hero-stat-item">
+                            <div class="hero-stat-value"><span class="counter" data-target="4.8" data-decimal="true">۰</span>٪</div>
+                            <div class="hero-stat-label">نرخ تبدیل</div>
+                        </div>
+                        <div class="hero-stat-item">
+                            <div class="hero-stat-value counter" data-target="1270">۰</div>
+                            <div class="hero-stat-label">لید جدید</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <div class="trust">
+        <div class="trust-inner">
+            <span class="trust-label">مورد اعتماد برندهای پیشرو</span>
+            <div class="trust-logos">
+                <span class="trust-logo">دیجی‌کالا</span>
+                <span class="trust-logo">اسنپ</span>
+                <span class="trust-logo">بلیط‌چارتر</span>
+                <span class="trust-logo">فینوتک</span>
+                <span class="trust-logo">آی‌گپ</span>
+                <span class="trust-logo">تاپ‌مونت</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-tag reveal">
+                    <span class="iconify" data-icon="mdi:star-four-points" data-width="14"></span>
+                    خدمات تخصصی
+                </div>
+                <h2 class="section-title reveal reveal-delay-1">
+                    راهکارهایی که نتیجه‌بخش هستند
+                </h2>
+                <p class="section-desc reveal reveal-delay-2">
+                    هر سرویس بر اساس داده‌های واقعی بازار ایران و با تمرکز بر بازگشت سرمایه طراحی شده
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon s1">
+                        <span class="iconify" data-icon="mdi:magnify" data-width="24"></span>
+                    </div>
+                    <h3>سئو و بهینه‌سازی جستجو</h3>
+                    <p>رتبه‌بندی ارگانیک در گوگل با استراتژی محتوایی مبتنی بر تحقیق کلمات کلیدی فارسی و رقابت‌سنجی دقیق</p>
+                    <a href="#" class="service-link" onclick="showToast('درخواست شما ثبت شد'); return false;">
+                        جزئیات بیشتر
+                        <span class="iconify" data-icon="mdi:arrow-left" data-width="16"></span>
+                    </a>
+                </div>
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon s2">
+                        <span class="iconify" data-icon="mdi:bullhorn" data-width="24"></span>
+                    </div>
+                    <h3>تبلیغات کلیکی (PPC)</h3>
+                    <p>مدیریت کمپین‌های Google Ads و تبلیغات.Native با میانگین نرخ بازگشت سرمایه ۴.۲ برابر برای مشتریان</p>
+                    <a href="#" class="service-link" onclick="showToast('درخواست شما ثبت شد'); return false;">
+                        جزئیات بیشتر
+                        <span class="iconify" data-icon="mdi:arrow-left" data-width="16"></span>
+                    </a>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon s3">
+                        <span class="iconify" data-icon="mdi:instagram" data-width="24"></span>
+                    </div>
+                    <h3>مدیریت شبکه‌های اجتماعی</h3>
+                    <p>استراتژی محتوا و تولید برای اینستاگرام، لینکدین و تلگرام با میانگین رشد ۲۸٪ نرخ تعامل ماهانه</p>
+                    <a href="#" class="service-link" onclick="showToast('درخواست شما ثبت شد'); return false;">
+                        جزئیات بیشتر
+                        <span class="iconify" data-icon="mdi:arrow-left" data-width="16"></span>
+                    </a>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon s4">
+                        <span class="iconify" data-icon="mdi:chart-areaspline" data-width="24"></span>
+                    </div>
+                    <h3>تحلیل داده و BI</h3>
+                    <p>راه‌اندازی گوگل آنالیتیکس ۴، داشبورد سفارشی و گزارش‌های هفتگی با اعداد دقیق فارسی‌شده</p>
+                    <a href="#" class="service-link" onclick="showToast('درخواست شما ثبت شد'); return false;">
+                        جزئیات بیشتر
+                        <span class="iconify" data-icon="mdi:arrow-left" data-width="16"></span>
+                    </a>
+                </div>
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon s5">
+                        <span class="iconify" data-icon="mdi:email-fast" data-width="24"></span>
+                    </div>
+                    <h3>ایمیل مارکتینگ</h3>
+                    <p>کمپین‌های اتومیشن با نرخ باز شدن ۳۲٪ (بالاتر از میانگین جهانی ۲۱٪) و نرخ کلیک ۴.۷٪</p>
+                    <a href="#" class="service-link" onclick="showToast('درخواست شما ثبت شد'); return false;">
+                        جزئیات بیشتر
+                        <span class="iconify" data-icon="mdi:arrow-left" data-width="16"></span>
+                    </a>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon s6">
+                        <span class="iconify" data-icon="mdi:palette-swatch-variant" data-width="24"></span>
+                    </div>
+                    <h3>طراحی تجربه کاربری (UX)</h3>
+                    <p>آزمون کاربری، طراحی وایرفریم و پروتوتایپ با میانگین کاهش ۴۰٪ نرخ خروج از صفحه فرود</p>
+                    <a href="#" class="service-link" onclick="showToast('درخواست شما ثبت شد'); return false;">
+                        جزئیات بیشتر
+                        <span class="iconify" data-icon="mdi:arrow-left" data-width="16"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS DASHBOARD -->
+    <section class="section stats-section" id="stats">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-tag reveal">
+                    <span class="iconify" data-icon="mdi:chart-bar" data-width="14"></span>
+                    اعداد واقعی
+                </div>
+                <h2 class="section-title reveal reveal-delay-1">
+                    آمار عملکرد، نه شعار تبلیغاتی
+                </h2>
+                <p class="section-desc reveal reveal-delay-2">
+                    این اعداد از خروجی واقعی پروژه‌های سال ۱۴۰۳ استخراج شده‌اند
+                </p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card reveal">
+                    <div class="stat-number">
+                        <span class="counter" data-target="84.5" data-decimal="true">۰</span><span class="stat-suffix">٪</span>
+                    </div>
+                    <div class="stat-unit">ضریب نفوذ اینترنت در ایران</div>
+                    <div class="stat-desc">بر اساس آمار مرکز ملی فضای مجازی، آبان ۱۴۰۳</div>
+                </div>
+                <div class="stat-card reveal reveal-delay-1">
+                    <div class="stat-number">
+                        <span class="counter" data-target="4.2" data-decimal="true">۰</span><span class="stat-suffix">x</span>
+                    </div>
+                    <div class="stat-unit">میانگین ROAS مشتریان</div>
+                    <div class="stat-desc">بازگشت سرمایه تبلیغاتی در ۱۲ ماه گذشته</div>
+                </div>
+                <div class="stat-card reveal reveal-delay-2">
+                    <div class="stat-number">
+                        <span class="counter" data-target="67" data-decimal="false">۰</span><span class="stat-suffix">M</span>
+                    </div>
+                    <div class="stat-unit">کاربر فعال شبکه‌های اجتماعی</div>
+                    <div class="stat-desc">اینستاگرام و تلگرام، گزارش DataReportal 2024</div>
+                </div>
+                <div class="stat-card reveal reveal-delay-3">
+                    <div class="stat-number">
+                        <span class="counter" data-target="38" data-decimal="false">۰</span><span class="stat-suffix">٪</span>
+                    </div>
+                    <div class="stat-unit">رشد میانگین ترافیک ارگانیک</div>
+                    <div class="stat-desc">طی ۶ ماه اول همکاری با مشتریان جدید</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section class="section" id="cases">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-tag reveal">
+                    <span class="iconify" data-icon="mdi:briefcase-check" data-width="14"></span>
+                    نمونه کارها
+                </div>
+                <h2 class="section-title reveal reveal-delay-1">
+                    پروژه‌هایی که حرف می‌زنند
+                </h2>
+                <p class="section-desc reveal reveal-delay-2">
+                    خلاصه‌ای از سه پروژه واقعی با نتایج قابل اندازه‌گیری
+                </p>
+            </div>
+            <div class="cases-grid">
+                <div class="case-card featured reveal">
+                    <img src="https://picsum.photos/seed/ecommerce-fashion/800/400.jpg" alt="فروشگاه مد و پوشاک" class="case-img" loading="lazy">
+                    <div class="case-body">
+                        <div class="case-tags">
+                            <span class="case-tag">سئو</span>
+                            <span class="case-tag">Google Ads</span>
+                            <span class="case-tag">CRO</span>
+                        </div>
+                        <h3>فروشگاه اینترنتی مد و پوشاک — رشد ۲۳۰٪ فروش</h3>
+                        <p>
+                            مشتری با ترافیک روزانه ۸۰۰ بازدید و نرخ تبدیل ۱.۲٪ مواجه بود.
+                            با بازطراحی صفحه محصول، بهینه‌سازی سرعت به زیر ۲.۵ ثانیه،
+                            و استراتژی سئو Long-tail، ترافیک ارگانیک به ۱۲,۰۰۰ رسید
+                            و نرخ تبدیل به ۳.۸٪ افزایش یافت.
+                        </p>
+                        <div class="case-metrics">
+                            <div>
+                                <div class="case-metric-value">+۲۳۰٪</div>
+                                <div class="case-metric-label">رشد درآمد</div>
+                            </div>
+                            <div>
+                                <div class="case-metric-value">۳.۸٪</div>
+                                <div class="case-metric-label">نرخ تبدیل نهایی</div>
+                            </div>
+                            <div>
+                                <div class="case-metric-value">۱۲K</div>
+                                <div class="case-metric-label">بازدید روزانه</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card reveal reveal-delay-1">
+                    <img src="https://picsum.photos/seed/saas-startup/600/300.jpg" alt="استارتاپ ساعتی" class="case-img" loading="lazy">
+                    <div class="case-body">
+                        <div class="case-tags">
+                            <span class="case-tag">لینکدین</span>
+                            <span class="case-tag">ایمیل</span>
+                        </div>
+                        <h3>پلتفرم SaaS — ۴۲۰ لید B2B ماهانه</h3>
+                        <p>استراتژی محتوای لینکدین و ایمیل سرد با نرخ پاسخ ۱۸٪</p>
+                        <div class="case-metrics">
+                            <div>
+                                <div class="case-metric-value">۴۲۰</div>
+                                <div class="case-metric-label">لید ماهانه</div>
+                            </div>
+                            <div>
+                                <div class="case-metric-value">۱۸٪</div>
+                                <div class="case-metric-label">نرخ پاسخ ایمیل</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card reveal reveal-delay-2">
+                    <img src="https://picsum.photos/seed/restaurant-food/600/300.jpg" alt="رستوران زنجیره‌ای" class="case-img" loading="lazy">
+                    <div class="case-body">
+                        <div class="case-tags">
+                            <span class="case-tag">اینستاگرام</span>
+                            <span class="case-tag">محتوای ویدیویی</span>
+                        </div>
+                        <h3>رستوران زنجیره‌ای — ۸۵K فالوور جدید</h3>
+                        <p>رشد حساب اینستاگرام با محتوای Reels و استوری تعاملی</p>
+                        <div class="case-metrics">
+                            <div>
+                                <div class="case-metric-value">+۸۵K</div>
+                                <div class="case-metric-label">فالوور</div>
+                            </div>
+                            <div>
+                                <div class="case-metric-value">۶.۲٪</div>
+                                <div class="case-metric-label">نرخ تعامل</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section" style="background: var(--white);" id="process">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-tag reveal">
+                    <span class="iconify" data-icon="mdi:cog-outline" data-width="14"></span>
+                    روش کار
+                </div>
+                <h2 class="section-title reveal reveal-delay-1">
+                    از تحلیل تا رشد، مرحله به مرحله
+                </h2>
+                <p class="section-desc reveal reveal-delay-2">
+                    فرآیند ۴ مرحله‌ای ما تضمین می‌کند هیچ بودجه‌ای هدر نرود
+                </p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step reveal">
+                    <div class="process-num">01</div>
+                    <h3>بررسی و عارضه‌یابی</h3>
+                    <p>تحلیل کامل وضعیت فعلی: ترافیک، کانال‌ها، رقبا و نقاط درد با ابزارهای GA4، Search Console و Ahrefs</p>
+                </div>
+                <div class="process-step reveal reveal-delay-1">
+                    <div class="process-num">02</div>
+                    <h3>استراتژی و نقشه راه</h3>
+                    <p>تعیین KPIها، انتخاب کانال‌های اولویت‌دار و تدوین تقویم محتوایی ۹۰ روزه با بودجه‌بندی دقیق</p>
+                </div>
+                <div class="process-step reveal reveal-delay-2">
+                    <div class="process-num">03</div>
+                    <h3>اجرا و تست</h3>
+                    <p>پیاده‌سازی کمپین‌ها با A/B تست مداوم. هر هفته حداقل ۲ آزمایش روی عناصر صفحه و کپی</p>
+                </div>
+                <div class="process-step reveal reveal-delay-3">
+                    <div class="process-num">04</div>
+                    <h3>اندازه‌گیری و بهینه‌سازی</h3>
+                    <p>گزارش‌دهی هفتگی با متریک‌های واقعی و تصمیم‌گیری داده‌محور برای مقیاس‌پذیری نتایج</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section testimonials-section" id="testimonials">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-tag reveal">
+                    <span class="iconify" data-icon="mdi:account-group" data-width="14"></span>
+                    نظرات مشتریان
+                </div>
+                <h2 class="section-title reveal reveal-delay-1">
+                    از زبان کسانی که نتیجه گرفتند
+                </h2>
+                <p class="section-desc reveal reveal-delay-2">
+                    نظرات واقعی مشتریانی که حداقل ۶ ماه با ما همکاری داشته‌اند
+                </p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                    </div>
+                    <p class="testimonial-quote">
+                        «قبل از همکاری با رشدینه، هزینه‌های تبلیغاتی ما بدون بازخورد مشخصی بود. بعد از ۴ ماه،
+                        هزینه به ازای هر لید ۶۰٪ کاهش یافت و ترافیک ارگانیک ۳ برابر شد.
+                        گزارش‌های هفتگی‌شان واقعاً شفاف است.»
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/ceo-woman/100/100.jpg" alt="سارا احمدی" class="testimonial-avatar" loading="lazy">
+                        <div>
+                            <div class="testimonial-name">سارا احمدی</div>
+                            <div class="testimonial-role">مدیرعامل فروشگاه آنلاین زَنگ</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal reveal-delay-1">
+                    <div class="testimonial-stars">
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                    </div>
+                    <p class="testimonial-quote">
+                        «تیم رشدینه با استراتژی لینکدین و ایمیل مارکتینگ، برای ما ۴۲۰ لید B2B در ماه
+                        تولید کرد. نرخ تبدیل لید به مشتری ۱۲٪ بود که برای صنعت نرم‌افزار عدد فوق‌العاده‌ای است.»
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/cto-man/100/100.jpg" alt="علی رضایی" class="testimonial-avatar" loading="lazy">
+                        <div>
+                            <div class="testimonial-name">علی رضایی</div>
+                            <div class="testimonial-role">بنیان‌گذار پلتفرم تسک‌فلو</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal reveal-delay-2">
+                    <div class="testimonial-stars">
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                        <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                        <span class="iconify" data-icon="mdi:star-half-full" data-width="14"></span>
+                    </div>
+                    <p class="testimonial-quote">
+                        «محتوای ویدیویی و Reels‌هایی که برای رستوران‌های زنجیره‌ای ما تولید کردند،
+                        در ۳ ماه ۸۵ هزار فالوور جدید آورد. مهم‌تر از فالوور، رشد ۴۵٪
+                        رزرو آنلاین بود.»
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/marketing-director/100/100.jpg" alt="مریم کریمی" class="testimonial-avatar" loading="lazy">
+                        <div>
+                            <div class="testimonial-name">مریم کریمی</div>
+                            <div class="testimonial-role">مدیر بازاریابی گروه رستورانی چِشَم</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="cta">
+        <div class="cta-inner">
+            <h2 class="reveal">آماده‌اید رشد واقعی را تجربه کنید؟</h2>
+            <p class="reveal reveal-delay-1">
+                اولین جلسه مشاوره رایگان است. ما وضعیت فعلی شما را تحلیل
+                می‌کنیم و بدون تعهد، سه پیشنهاد عملی ارائه می‌دهیم.
+            </p>
+            <div class="cta-actions reveal reveal-delay-2">
+                <button class="btn-gold" onclick="showToast('درخواست مشاوره ثبت شد ✓')">
+                    رزرو جلسه مشاوره رایگان
+                    <span class="iconify" data-icon="mdi:arrow-left" data-width="18"></span>
+                </button>
+                <a href="tel:02191000000" class="btn-outline-white">
+                    <span class="iconify" data-icon="mdi:phone" data-width="18"></span>
+                    ۰۲۱-۹۱۰۰۰۰۰۰
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand-text">رشدینه</div>
+                    <p class="footer-desc">
+                        آژانس دیجیتال مارکتینگ داده‌محور.
+                        از سال ۱۳۹۸ به بیش از ۱۲۰ کسب‌وکار ایرانی کمک کرده‌ایم
+                        تا با روش‌های قابل اندازه‌گیری رشد کنند.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="#" class="footer-social" aria-label="اینستاگرام">
+                            <span class="iconify" data-icon="mdi:instagram" data-width="18"></span>
+                        </a>
+                        <a href="#" class="footer-social" aria-label="لینکدین">
+                            <span class="iconify" data-icon="mdi:linkedin" data-width="18"></span>
+                        </a>
+                        <a href="#" class="footer-social" aria-label="تلگرام">
+                            <span class="iconify" data-icon="mdi:send" data-width="18"></span>
+                        </a>
+                        <a href="#" class="footer-social" aria-label="توییتر">
+                            <span class="iconify" data-icon="mdi:twitter" data-width="18"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>خدمات</h4>
+                    <a href="#">سئو و بهینه‌سازی</a>
+                    <a href="#">تبلیغات کلیکی</a>
+                    <a href="#">شبکه‌های اجتماعی</a>
+                    <a href="#">ایمیل مارکتینگ</a>
+                    <a href="#">تحلیل داده و BI</a>
+                    <a href="#">طراحی UX</a>
+                </div>
+                <div class="footer-col">
+                    <h4>شرکت</h4>
+                    <a href="#">درباره ما</a>
+                    <a href="#">تیم ما</a>
+                    <a href="#">بلاگ</a>
+                    <a href="#">فرصت‌های شغلی</a>
+                    <a href="#">تماس با ما</a>
+                </div>
+                <div class="footer-col">
+                    <h4>منابع</h4>
+                    <a href="#">گزارش وضعیت مارکتینگ ایران</a>
+                    <a href="#">محاسبه‌گر ROAS</a>
+                    <a href="#">چک‌لیست سئو</a>
+                    <a href="#">وبینارهای رایگان</a>
+                    <a href="#">قوانین و حریم خصوصی</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© ۱۴۰۳ رشدینه. تمامی حقوق محفوظ است.</span>
+                <span>تهران، خیابان ولیعصر، پلاک ۲۴۸</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+        <span class="iconify" data-icon="mdi:check-circle" data-width="20"></span>
+        <span id="toastText"></span>
+    </div>
+
+    <script>
+        // === MOBILE MENU ===
+        function toggleMobile() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        }
+
+        // === NAVBAR SCROLL ===
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 40);
+        }, { passive: true });
+
+        // === SCROLL REVEAL (IntersectionObserver) ===
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // === PERSIAN NUMBER CONVERTER ===
+        function toPersianNum(num) {
+            const persianDigits = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+            return String(num).replace(/\d/g, d => persianDigits[d]);
+        }
+
+        // === ANIMATED COUNTERS ===
+        function animateCounter(el) {
+            const target = parseFloat(el.dataset.target);
+            const isDecimal = el.dataset.decimal === 'true';
+            const duration = 2000;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // ease-out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = target * eased;
+
+                if (isDecimal) {
+                    el.textContent = toPersianNum(current.toFixed(1));
+                } else {
+                    el.textContent = toPersianNum(Math.round(current).toLocaleString('en-US').replace(/,/g, '٬'));
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    if (isDecimal) {
+                        el.textContent = toPersianNum(target.toFixed(1));
+                    } else {
+                        el.textContent = toPersianNum(target.toLocaleString('en-US').replace(/,/g, '٬'));
+                    }
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+        // === MINI CHART ===
+        (function buildChart() {
+            const container = document.getElementById('miniChart');
+            const values = [35, 42, 38, 55, 48, 62, 58, 72, 65, 78, 85, 92];
+            const months = ['فرو','ارد','خرد','تیر','مرد','شهر','مهر','آبا','آذر','دی','بهم','اسف'];
+            const max = Math.max(...values);
+
+            values.forEach((val, i) => {
+                const bar = document.createElement('div');
+                bar.className = 'mini-bar' + (i >= 9 ? ' active' : '');
+                bar.style.height = '0%';
+                bar.innerHTML = `<span class="mini-bar-label">${months[i]}</span>`;
+                container.appendChild(bar);
+
+                // Animate bars on load
+                setTimeout(() => {
+                    bar.style.height = (val / max * 100) + '%';
+                }, 300 + i * 80);
+            });
+        })();
+
+        // === TOAST ===
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const text = document.getElementById('toastText');
+            text.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // === SMOOTH SCROLL FOR ANCHOR LINKS ===
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const id = a.getAttribute('href');
+                if (id === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(id);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

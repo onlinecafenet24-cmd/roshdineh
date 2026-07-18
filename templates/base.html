@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ config['SITE_DESCRIPTION'] }}">
+    <title>{% block title %}{{ config['SITE_NAME'] }} | آژانس دیجیتال مارکتینگ{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="nav" id="navbar">
+        <a href="{{ url_for('index') }}" class="nav-brand">
+            <div class="nav-logo">ر</div>
+            <span class="nav-brand-text">{{ config['SITE_NAME'] }}</span>
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}#services">خدمات</a>
+            <a href="{{ url_for('index') }}#cases">نمونه کارها</a>
+            <a href="{{ url_for('index') }}#process">فرآیند</a>
+            <a href="{{ url_for('index') }}#testimonials">نظرات</a>
+            <a href="{{ url_for('index') }}#cta" class="nav-cta">مشاوره رایگان</a>
+        </div>
+        <button class="nav-mobile-btn" onclick="toggleMobile()" aria-label="منو">
+            <span class="iconify" data-icon="mdi:menu" data-width="28"></span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" onclick="toggleMobile()">
+            <span class="iconify" data-icon="mdi:close" data-width="28"></span>
+        </button>
+        <a href="{{ url_for('index') }}#services" onclick="toggleMobile()">خدمات</a>
+        <a href="{{ url_for('index') }}#cases" onclick="toggleMobile()">نمونه کارها</a>
+        <a href="{{ url_for('index') }}#process" onclick="toggleMobile()">فرآیند</a>
+        <a href="{{ url_for('index') }}#testimonials" onclick="toggleMobile()">نظرات</a>
+        <a href="{{ url_for('index') }}#cta" onclick="toggleMobile()">مشاوره رایگان</a>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <div class="toast" id="toast">
+        <span class="iconify" data-icon="mdi:check-circle" data-width="20"></span>
+        <span id="toastText"></span>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

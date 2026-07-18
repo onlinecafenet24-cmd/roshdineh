@@ -1,0 +1,27 @@
+<section class="section stats-section" id="stats">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-tag reveal">
+                <span class="iconify" data-icon="mdi:chart-bar" data-width="14"></span>
+                اعداد واقعی
+            </div>
+            <h2 class="section-title reveal reveal-delay-1">{{ stats_title }}</h2>
+            <p class="section-desc reveal reveal-delay-2">{{ stats_desc }}</p>
+        </div>
+        <div class="stats-grid">
+            {% for stat in stats %}
+            <div class="stat-card reveal {{ 'reveal-delay-1' if loop.index0 == 1 else 'reveal-delay-2' if loop.index0 == 2 else 'reveal-delay-3' if loop.index0 == 3 else '' }}">
+                <div class="stat-number">
+                    {% if stat.value is number and stat.value % 1 != 0 %}
+                    <span class="counter" data-target="{{ stat.value }}" data-decimal="true">۰</span><span class="stat-suffix">{{ stat.suffix }}</span>
+                    {% else %}
+                    <span class="counter" data-target="{{ stat.value }}" data-decimal="false">۰</span><span class="stat-suffix">{{ stat.suffix }}</span>
+                    {% endif %}
+                </div>
+                <div class="stat-unit">{{ stat.unit }}</div>
+                <div class="stat-desc">{{ stat.source }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

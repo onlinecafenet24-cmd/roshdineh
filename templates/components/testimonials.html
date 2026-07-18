@@ -1,0 +1,34 @@
+<section class="section testimonials-section" id="testimonials">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-tag reveal">
+                <span class="iconify" data-icon="mdi:account-group" data-width="14"></span>
+                نظرات مشتریان
+            </div>
+            <h2 class="section-title reveal reveal-delay-1">از زبان کسانی که نتیجه گرفتند</h2>
+            <p class="section-desc reveal reveal-delay-2">نظرات واقعی مشتریانی که حداقل ۶ ماه با ما همکاری داشته‌اند</p>
+        </div>
+        <div class="testimonials-grid">
+            {% for testimonial in testimonials %}
+            <div class="testimonial-card reveal {{ 'reveal-delay-1' if loop.index0 == 1 else 'reveal-delay-2' if loop.index0 == 2 else '' }}">
+                <div class="testimonial-stars">
+                    {% for i in range(testimonial.stars) %}
+                    <span class="iconify" data-icon="mdi:star" data-width="14"></span>
+                    {% endfor %}
+                    {% if testimonial.stars < 5 %}
+                    <span class="iconify" data-icon="mdi:star-half-full" data-width="14"></span>
+                    {% endif %}
+                </div>
+                <p class="testimonial-quote">«{{ testimonial.quote }}»</p>
+                <div class="testimonial-author">
+                    <img src="https://picsum.photos/seed/{{ testimonial.avatar_seed }}/100/100.jpg" alt="{{ testimonial.name }}" class="testimonial-avatar" loading="lazy">
+                    <div>
+                        <div class="testimonial-name">{{ testimonial.name }}</div>
+                        <div class="testimonial-role">{{ testimonial.role }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

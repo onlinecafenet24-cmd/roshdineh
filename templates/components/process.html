@@ -1,0 +1,21 @@
+<section class="section" style="background: var(--white);" id="process">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-tag reveal">
+                <span class="iconify" data-icon="mdi:cog-outline" data-width="14"></span>
+                روش کار
+            </div>
+            <h2 class="section-title reveal reveal-delay-1">از تحلیل تا رشد، مرحله به مرحله</h2>
+            <p class="section-desc reveal reveal-delay-2">فرآیند ۴ مرحله‌ای ما تضمین می‌کند هیچ بودجه‌ای هدر نرود</p>
+        </div>
+        <div class="process-grid">
+            {% for step in process_steps %}
+            <div class="process-step reveal {{ 'reveal-delay-1' if loop.index0 == 1 else 'reveal-delay-2' if loop.index0 == 2 else 'reveal-delay-3' if loop.index0 == 3 else '' }}">
+                <div class="process-num">{{ step.number }}</div>
+                <h3>{{ step.title }}</h3>
+                <p>{{ step.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

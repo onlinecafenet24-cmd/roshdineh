@@ -1,0 +1,27 @@
+<section class="section" id="services">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-tag reveal">
+                <span class="iconify" data-icon="mdi:star-four-points" data-width="14"></span>
+                خدمات تخصصی
+            </div>
+            <h2 class="section-title reveal reveal-delay-1">راهکارهایی که نتیجه‌بخش هستند</h2>
+            <p class="section-desc reveal reveal-delay-2">هر سرویس بر اساس داده‌های واقعی بازار ایران و با تمرکز بر بازگشت سرمایه طراحی شده</p>
+        </div>
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card reveal {{ 'reveal-delay-1' if loop.index0 % 3 == 1 else 'reveal-delay-2' if loop.index0 % 3 == 2 else '' }}">
+                <div class="service-icon {{ service.color_class }}">
+                    <span class="iconify" data-icon="{{ service.icon }}" data-width="24"></span>
+                </div>
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+                <a href="#" class="service-link" onclick="showToast('درخواست شما ثبت شد'); return false;">
+                    جزئیات بیشتر
+                    <span class="iconify" data-icon="mdi:arrow-left" data-width="16"></span>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

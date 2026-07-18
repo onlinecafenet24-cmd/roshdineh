@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}خدمات | {{ config['SITE_NAME'] }}{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 140px;">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-tag reveal">
+                <span class="iconify" data-icon="mdi:star-four-points" data-width="14"></span>
+                خدمات ما
+            </div>
+            <h2 class="section-title reveal reveal-delay-1">از استراتژی تا اجرا، همه‌چیز در یک مسیر</h2>
+            <p class="section-desc reveal reveal-delay-2">هر خدمت با هدف رشد قابل اندازه‌گیری و بازگشت سرمایه طراحی شده است.</p>
+        </div>
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card reveal" data-service-card>
+                <div class="service-icon {{ service.color_class }}">
+                    <span class="iconify" data-icon="{{ service.icon }}" data-width="24"></span>
+                </div>
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+                <div class="service-features">
+                    <ul>
+                        {% for feature in service.features %}
+                        <li>{{ feature }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <a href="#" class="service-link" onclick="showToast('درخواست شما ثبت شد'); return false;">
+                    جزئیات بیشتر
+                    <span class="iconify" data-icon="mdi:arrow-left" data-width="16"></span>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="cta-section" id="cta">
+    <div class="cta-inner">
+        <h2 class="reveal">آماده‌ای تا برای برندت مسیر رشد بسازیم؟</h2>
+        <p class="reveal reveal-delay-1">اولین مشاوره رایگان، بدون تعهد و با پیشنهادهای کاربردی برای پروژه‌ات.</p>
+        <div class="cta-actions reveal reveal-delay-2">
+            <button class="btn-gold" onclick="showToast('درخواست مشاوره ثبت شد ✓')">
+                رزرو جلسه مشاوره رایگان
+                <span class="iconify" data-icon="mdi:arrow-left" data-width="18"></span>
+            </button>
+            <a href="tel:02191000000" class="btn-outline-white">
+                <span class="iconify" data-icon="mdi:phone" data-width="18"></span>
+                ۰۲۱-۹۱۰۰۰۰۰۰
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

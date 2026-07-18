@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}نمونه کارها | {{ config['SITE_NAME'] }}{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 140px;">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-tag reveal">
+                <span class="iconify" data-icon="mdi:briefcase-check" data-width="14"></span>
+                نمونه کارها
+            </div>
+            <h2 class="section-title reveal reveal-delay-1">پروژه‌هایی که نتیجه‌ی قابل اندازه‌گیری داده‌اند</h2>
+            <p class="section-desc reveal reveal-delay-2">فیلتر بر اساس تگ‌ها برای مشاهده‌ی سریع نمونه کارهای مرتبط.</p>
+        </div>
+        <div class="cases-filter reveal">
+            <button class="filter-btn active" data-filter="all">همه</button>
+            {% for tag in all_tags %}
+            <button class="filter-btn" data-filter="{{ tag }}">{{ tag }}</button>
+            {% endfor %}
+        </div>
+        <div class="cases-grid cases-page-grid">
+            {% for case in cases %}
+            <article class="case-card reveal {% if case.featured %}featured{% endif %}" data-tags="{{ case.tags|join(',') }}">
+                <img src="https://picsum.photos/seed/{{ case.image_seed }}/800/400.jpg" alt="{{ case.title }}" class="case-img" loading="lazy">
+                <div class="case-body">
+                    <div class="case-tags">
+                        {% for tag in case.tags %}
+                        <span class="case-tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <h3>{{ case.title }}</h3>
+                    <p>{{ case.description }}</p>
+                    <div class="case-metrics">
+                        {% for metric in case.metrics %}
+                        <div>
+                            <div class="case-metric-value">{{ metric.value }}</div>
+                            <div class="case-metric-label">{{ metric.label }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

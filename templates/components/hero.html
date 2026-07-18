@@ -1,0 +1,59 @@
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-content">
+            <div class="hero-badge reveal">
+                <div class="hero-badge-dot"></div>
+                {{ hero.badge_text }}
+            </div>
+            <h1 class="reveal reveal-delay-1">
+                {{ hero.title_line1 }}<br>
+                با <span>{{ hero.title_highlight }}</span>
+            </h1>
+            <p class="hero-desc reveal reveal-delay-2">{{ hero.description }}</p>
+            <div class="hero-actions reveal reveal-delay-3">
+                <a href="#cta" class="btn-primary">
+                    شروع همکاری
+                    <span class="iconify" data-icon="mdi:arrow-left" data-width="18"></span>
+                </a>
+                <a href="#cases" class="btn-secondary">
+                    <span class="iconify" data-icon="mdi:play-circle-outline" data-width="20"></span>
+                    مشاهده نمونه کارها
+                </a>
+            </div>
+        </div>
+        <div class="hero-visual reveal reveal-delay-2">
+            {% for card in hero.float_cards %}
+            <div class="hero-float-card {{ 'card-1' if loop.first else 'card-2' }}">
+                <div class="float-icon {{ card.icon_class }}">
+                    <span class="iconify" data-icon="{{ card.icon }}" data-width="20"></span>
+                </div>
+                <div>
+                    <div class="float-text-sm">{{ card.title }}</div>
+                    <div class="float-text-value">{{ card.value }}</div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="hero-card">
+                <div class="hero-card-header">
+                    <span class="hero-card-title">داشبورد عملکرد</span>
+                    <span class="hero-card-badge">زنده</span>
+                </div>
+                <div class="mini-chart" id="miniChart"></div>
+                <div class="hero-stats-row">
+                    {% for stat in hero.stats %}
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-value">
+                            {% if stat.decimal %}
+                            <span class="counter" data-target="{{ stat.target }}" data-decimal="true">۰</span>%
+                            {% else %}
+                            <span class="counter" data-target="{{ stat.target }}">۰</span>
+                            {% endif %}
+                        </div>
+                        <div class="hero-stat-label">{{ stat.label }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

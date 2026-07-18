@@ -1,0 +1,36 @@
+<section class="section" id="cases">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-tag reveal">
+                <span class="iconify" data-icon="mdi:briefcase-check" data-width="14"></span>
+                نمونه کارها
+            </div>
+            <h2 class="section-title reveal reveal-delay-1">پروژه‌هایی که حرف می‌زنند</h2>
+            <p class="section-desc reveal reveal-delay-2">خلاصه‌ای از سه پروژه واقعی با نتایج قابل اندازه‌گیری</p>
+        </div>
+        <div class="cases-grid">
+            {% for case in cases %}
+            <div class="case-card reveal {% if loop.first %}featured{% endif %}">
+                <img src="https://picsum.photos/seed/{{ case.image_seed }}/800/400.jpg" alt="{{ case.title }}" class="case-img" loading="lazy">
+                <div class="case-body">
+                    <div class="case-tags">
+                        {% for tag in case.tags %}
+                        <span class="case-tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <h3>{{ case.title }}</h3>
+                    <p>{{ case.description }}</p>
+                    <div class="case-metrics">
+                        {% for metric in case.metrics %}
+                        <div>
+                            <div class="case-metric-value">{{ metric.value }}</div>
+                            <div class="case-metric-label">{{ metric.label }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
